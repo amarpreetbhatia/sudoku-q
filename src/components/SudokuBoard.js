@@ -16,6 +16,13 @@ const SudokuBoard = ({ puzzle, solution, onGameComplete, onGameFailed }) => {
     if (puzzle) {
       setBoard(JSON.parse(JSON.stringify(puzzle)));
       
+      // Reset game state
+      setSelectedCell(null);
+      setInvalidCells([]);
+      setTimeLeft(180);
+      setGameOver(false);
+      setGameWon(false);
+      
       // Track prefilled cells
       const prefilledCells = [];
       for (let row = 0; row < 9; row++) {
@@ -46,7 +53,7 @@ const SudokuBoard = ({ puzzle, solution, onGameComplete, onGameFailed }) => {
     }, 1000);
     
     return () => clearInterval(timer);
-  }, [gameOver, gameWon, onGameFailed]);
+  }, [gameOver, gameWon, onGameFailed, puzzle]); // Added puzzle as dependency to reset timer
 
   // Check if the game is complete
   useEffect(() => {

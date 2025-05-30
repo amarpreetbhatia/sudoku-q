@@ -2,6 +2,11 @@
 
 A fun Sudoku game built with React and DaisyUI, featuring a 3-minute timer challenge.
 
+## Screenshots
+
+![Sudoku Q Game Screenshot](./sudoku-q-screenshot.png)
+![Sudoku Q Game Over Screen](./sudoku-q-game-over.png)
+
 ## Features
 
 - Interactive Sudoku board with 3 difficulty levels

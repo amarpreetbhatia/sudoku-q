@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPuzzlePiece,faHomeUser } from '@fortawesome/free-solid-svg-icons';
+import { faPuzzlePiece, faHomeUser } from '@fortawesome/free-solid-svg-icons';
 import SudokuBoard from './components/SudokuBoard';
 import GameOver from './components/GameOver';
 import { generatePuzzle } from './utils/sudokuGenerator';
@@ -12,6 +12,7 @@ function App() {
   const [gameSuccess, setGameSuccess] = useState(false);
   const [difficulty, setDifficulty] = useState('medium');
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameKey, setGameKey] = useState(0); // Add a key to force re-render
 
   // Generate a new puzzle
   const generateNewGame = () => {
@@ -19,6 +20,7 @@ function App() {
     setGameData(newGame);
     setShowGameOver(false);
     setGameStarted(true);
+    setGameKey(prevKey => prevKey + 1); // Increment key to force re-render
   };
 
   // Initialize the game
@@ -42,8 +44,11 @@ function App() {
 
   // Restart the game
   const handleRestart = () => {
+    setShowGameOver(false);
     setGameStarted(false);
-    generateNewGame();
+    setTimeout(() => {
+      generateNewGame();
+    }, 100); // Small delay to ensure state updates properly
   };
 
   // Change difficulty
@@ -82,7 +87,7 @@ function App() {
               className="select select-bordered w-full" 
               value={difficulty} 
               onChange={handleDifficultyChange}
-              disabled={gameStarted}
+              disabled={gameStarted && !showGameOver}
             >
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
@@ -101,6 +106,7 @@ function App() {
         <div className="card bg-base-200 shadow-xl p-4 md:p-8 max-w-3xl mx-auto">
           {gameData && (
             <SudokuBoard 
+              key={gameKey} // Add key to force re-render
               puzzle={gameData.puzzle} 
               solution={gameData.solution}
               onGameComplete={handleGameComplete}
