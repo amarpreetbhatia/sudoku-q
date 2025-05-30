@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="10" fill="#f5d547" />
+  <text x="50" y="65" font-family="Arial, sans-serif" font-size="50" font-weight="bold" text-anchor="middle" fill="#333">SQ</text>
+  <g stroke="#333" stroke-width="2">
+    <line x1="33" y1="20" x2="33" y2="80" />
+    <line x1="67" y1="20" x2="67" y2="80" />
+    <line x1="20" y1="33" x2="80" y2="33" />
+    <line x1="20" y1="67" x2="80" y2="67" />
+    <rect x="10" y="10" width="80" height="80" rx="5" fill="none" />
+  </g>
+</svg>
